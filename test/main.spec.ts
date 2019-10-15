@@ -1,6 +1,8 @@
-import Main from "../src/main";
+import EventManager from "../src/main";
 
-test("version is 1.0.1?", () => {
-  const test = Main;
-  expect(test()).toBe("this version is 1.0.1");
+test("on和emit是否正常?", () => {
+  const manager = new EventManager();
+  const mockCallback = jest.fn();
+  manager.on("add", mockCallback);
+  expect(manager.emit("add")).toBeTruthy();
 });
