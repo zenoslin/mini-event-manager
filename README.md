@@ -1,6 +1,6 @@
 # mini-event-manager
 
-A mini event manager.
+:satellite: A mini event manager.
 
 ## Get start
 
