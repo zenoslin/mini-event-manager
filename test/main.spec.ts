@@ -8,16 +8,6 @@ test("on&emit is regular?", () => {
   expect(manager.emit("add")).toBeTruthy();
 });
 
-test("off is regular?", () => {
-  const manager = new MiniEvent();
-  const mockCallback = jest.fn();
-  manager.on("add", mockCallback);
-  manager.off("add", mockCallback);
-  manager.off("next", mockCallback);
-  manager.emit("add");
-  expect(mockCallback.mock.calls.length).toBe(0);
-});
-
 test("can emit multiple parameters ?", () => {
   const manager = new MiniEvent();
   const add = (n: number[]): number =>
@@ -29,6 +19,26 @@ test("can emit multiple parameters ?", () => {
     expect(result).toBe(10);
   });
   manager.emit("add", 1, 2, 3, 4);
+});
+
+test("off is regular?", () => {
+  const manager = new MiniEvent();
+  const mockCallback = jest.fn();
+  manager.on("add", mockCallback);
+  manager.off("add", mockCallback);
+  manager.off("next", mockCallback);
+  manager.emit("add");
+  expect(mockCallback.mock.calls.length).toBe(0);
+});
+
+test("clear all listener?", () => {
+  const manager = new EventManager();
+  const mockCallback = jest.fn();
+  manager.on("add", mockCallback);
+  manager.on("add", mockCallback);
+  manager.off("add");
+  manager.emit("add");
+  expect(mockCallback.mock.calls.length).toBe(0);
 });
 
 test("once is regular?", () => {
@@ -67,4 +77,13 @@ test("get all eventName?", () => {
   expect(manager.eventNames()).toContain("add");
   expect(manager.eventNames()).toContain("next");
   expect(manager.eventNames()).toContain("last");
+});
+
+test("destory is regular?", () => {
+  const manager = new MiniEvent();
+  const mockCallback = jest.fn();
+  manager.on("add", mockCallback);
+  manager.destory();
+  manager.emit("add");
+  expect(mockCallback.mock.calls.length).toBe(0);
 });

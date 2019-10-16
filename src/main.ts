@@ -75,4 +75,8 @@ export default class MiniEvent {
     }
     return eventNameList;
   }
+
+  destory() {
+    this._listenersMap = {};
+  }
 }
