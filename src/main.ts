@@ -60,4 +60,11 @@ export default class MiniEvent {
       return false;
     }
   }
+
+  has(eventName: string): boolean {
+    return (
+      this._listenersMap[eventName] !== undefined &&
+      this._listenersMap[eventName].length > 0
+    );
+  }
 }

@@ -48,3 +48,11 @@ test("can bind multiple listener by the same event ?", () => {
   manager.emit("add");
   expect(mockCallback.mock.calls.length).toBe(2);
 });
+
+test("has is regular?", () => {
+  const manager = new MiniEvent();
+  const mockCallback = jest.fn();
+  manager.on("add", mockCallback);
+  expect(manager.has("add")).toBeTruthy();
+  expect(manager.has("next")).toBeFalsy();
+});
