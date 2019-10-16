@@ -1,4 +1,4 @@
-type Listener = (...payload: any) => void;
+type Listener = ((...payload: any) => void) & { isOnce?: boolean };
 
 interface ListenersMap {
   [propName: string]: Listener[];
@@ -16,6 +16,12 @@ export default class MiniEvent {
       this._listenersMap[evnetName] = [];
     }
     this._listenersMap[evnetName].push(linstener);
+    return this;
+  }
+
+  once(evnetName: string, listener: Listener): MiniEvent {
+    listener.isOnce = true;
+    this.on(evnetName, listener);
     return this;
   }
 
@@ -38,10 +44,16 @@ export default class MiniEvent {
   }
 
   emit(evnetName: string, ...payload: any): boolean {
-    const linstenerList: Listener[] = this._listenersMap[evnetName];
-    if (undefined !== linstenerList && 0 < linstenerList.length) {
-      for (let [index, listener] of linstenerList.entries()) {
-        listener(...payload);
+    const listenerList: Listener[] = this._listenersMap[evnetName];
+    if (undefined !== listenerList && 0 < listenerList.length) {
+      for (let [index, listener] of listenerList.entries()) {
+        if (listener.isOnce) {
+          let listenerClone = listener;
+          listenerList.splice(index, 1);
+          listenerClone(...payload);
+        } else {
+          listener(...payload);
+        }
       }
       return true;
     } else {
