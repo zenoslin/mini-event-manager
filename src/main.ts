@@ -19,10 +19,28 @@ export default class MiniEvent {
     return this;
   }
 
+  off(evnetName: string, linstener?: Listener): MiniEvent {
+    const listenerList: Listener[] = this._listenersMap[evnetName];
+    // has this event
+    if (listenerList !== undefined) {
+      if (linstener === undefined) {
+        // clear all listener
+        delete this._listenersMap[evnetName];
+      } else {
+        // clear this event
+        const index = listenerList.findIndex(
+          (fn: Listener) => fn === linstener
+        );
+        listenerList.splice(index, 1);
+      }
+    }
+    return this;
+  }
+
   emit(evnetName: string, ...payload: any): boolean {
-    const linsteners: Listener[] = this._listenersMap[evnetName];
-    if (undefined !== linsteners && 0 < linsteners.length) {
-      for (let [index, listener] of linsteners.entries()) {
+    const linstenerList: Listener[] = this._listenersMap[evnetName];
+    if (undefined !== linstenerList && 0 < linstenerList.length) {
+      for (let [index, listener] of linstenerList.entries()) {
         listener(...payload);
       }
       return true;
