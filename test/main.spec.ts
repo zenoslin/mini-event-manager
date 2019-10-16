@@ -56,3 +56,15 @@ test("has is regular?", () => {
   expect(manager.has("add")).toBeTruthy();
   expect(manager.has("next")).toBeFalsy();
 });
+
+test("get all eventName?", () => {
+  const manager = new MiniEvent();
+  const mockCallback = jest.fn();
+  manager.on("add", mockCallback);
+  manager.on("next", mockCallback);
+  manager.on("last", mockCallback);
+  expect(manager.eventNames().length).toBe(3);
+  expect(manager.eventNames()).toContain("add");
+  expect(manager.eventNames()).toContain("next");
+  expect(manager.eventNames()).toContain("last");
+});

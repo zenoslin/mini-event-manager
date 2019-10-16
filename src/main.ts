@@ -67,4 +67,12 @@ export default class MiniEvent {
       this._listenersMap[eventName].length > 0
     );
   }
+
+  eventNames() {
+    const eventNameList: string[] = [];
+    for (let eventName in this._listenersMap) {
+      eventNameList.push(eventName);
+    }
+    return eventNameList;
+  }
 }
