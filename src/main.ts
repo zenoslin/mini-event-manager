@@ -4,14 +4,14 @@ interface ListenersMap {
   [propName: string]: Listener[];
 }
 
-export default class MiniEvent {
+export default class EventManager {
   private _listenersMap: ListenersMap;
 
   constructor() {
     this._listenersMap = {};
   }
 
-  on(evnetName: string, linstener: Listener): MiniEvent {
+  on(evnetName: string, linstener: Listener): EventManager {
     if (undefined === this._listenersMap[evnetName]) {
       this._listenersMap[evnetName] = [];
     }
@@ -19,13 +19,13 @@ export default class MiniEvent {
     return this;
   }
 
-  once(evnetName: string, listener: Listener): MiniEvent {
+  once(evnetName: string, listener: Listener): EventManager {
     listener.isOnce = true;
     this.on(evnetName, listener);
     return this;
   }
 
-  off(evnetName: string, linstener?: Listener): MiniEvent {
+  off(evnetName: string, linstener?: Listener): EventManager {
     const listenerList: Listener[] = this._listenersMap[evnetName];
     // has this event
     if (listenerList !== undefined) {

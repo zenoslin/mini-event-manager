@@ -1,5 +1,4 @@
 import EventManager from "../src/main";
-import MiniEvent from "../src/main";
 
 test("on&emit is regular?", () => {
   const manager = new EventManager();
@@ -9,7 +8,7 @@ test("on&emit is regular?", () => {
 });
 
 test("can emit multiple parameters ?", () => {
-  const manager = new MiniEvent();
+  const manager = new EventManager();
   const add = (n: number[]): number =>
     n.reduce((prev: number, current: number) => {
       return prev + current;
@@ -22,7 +21,7 @@ test("can emit multiple parameters ?", () => {
 });
 
 test("off is regular?", () => {
-  const manager = new MiniEvent();
+  const manager = new EventManager();
   const mockCallback = jest.fn();
   manager.on("add", mockCallback);
   manager.off("add", mockCallback);
@@ -42,7 +41,7 @@ test("clear all listener?", () => {
 });
 
 test("once is regular?", () => {
-  const manager = new MiniEvent();
+  const manager = new EventManager();
   const mockCallback = jest.fn();
   manager.once("add", mockCallback);
   manager.emit("add");
@@ -51,7 +50,7 @@ test("once is regular?", () => {
 });
 
 test("can bind multiple listener by the same event ?", () => {
-  const manager = new MiniEvent();
+  const manager = new EventManager();
   const mockCallback = jest.fn();
   manager.on("add", mockCallback);
   manager.on("add", mockCallback);
@@ -60,7 +59,7 @@ test("can bind multiple listener by the same event ?", () => {
 });
 
 test("has is regular?", () => {
-  const manager = new MiniEvent();
+  const manager = new EventManager();
   const mockCallback = jest.fn();
   manager.on("add", mockCallback);
   expect(manager.has("add")).toBeTruthy();
@@ -68,7 +67,7 @@ test("has is regular?", () => {
 });
 
 test("get all eventName?", () => {
-  const manager = new MiniEvent();
+  const manager = new EventManager();
   const mockCallback = jest.fn();
   manager.on("add", mockCallback);
   manager.on("next", mockCallback);
@@ -80,7 +79,7 @@ test("get all eventName?", () => {
 });
 
 test("destory is regular?", () => {
-  const manager = new MiniEvent();
+  const manager = new EventManager();
   const mockCallback = jest.fn();
   manager.on("add", mockCallback);
   manager.destory();
