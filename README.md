@@ -1,8 +1,9 @@
-# mini-event-manager [![NPM Version][npm-image]][npm-url]
+# mini-event-manager [![NPM Version][npm-image]][npm-url] [![codecov][codecov-image]][codecov-url]
 
 [npm-image]: https://img.shields.io/npm/v/mini-event-manager
 [npm-url]:https://www.npmjs.com/package/mini-event-manager
-
+[codecov-image]: https://codecov.io/gh/zenoslin/mini-event-manager/branch/master/graph/badge.svg 
+[codecov-url]: https://codecov.io/gh/zenoslin/mini-event-manager
 
 :satellite: A mini event manager.
 
