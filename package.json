@@ -2,6 +2,12 @@
   "name": "mini-event-manager",
   "version": "0.0.1",
   "description": "A mini event manager.",
+  "keywords": [
+    "mini",
+    "event",
+    "manager",
+    "typescript"
+  ],
   "main": "lib/bundle.cjs.js",
   "module": "lib/bundle.esm.js",
   "scripts": {
@@ -9,8 +15,16 @@
     "build:type": "tsc -p ./tsconfig.type.json",
     "test": "jest --no-cache"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenoslin/mini-event-manager.git"
+  },
   "author": "zenoslin",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zenoslin/mini-event-manager/issues"
+  },
+  "homepage": "https://github.com/zenoslin/mini-event-manager#readme",
   "devDependencies": {
     "@types/jest": "^24.0.19",
     "jest": "^24.9.0",
