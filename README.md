@@ -2,7 +2,7 @@
 
 [npm-image]: https://img.shields.io/npm/v/mini-event-manager
 [npm-url]:https://www.npmjs.com/package/mini-event-manager
-[codecov-image]: https://codecov.io/gh/zenoslin/mini-event-manager/branch/master/graph/badge.svg 
+[codecov-image]: https://codecov.io/gh/zenoslin/mini-event-manager/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/zenoslin/mini-event-manager
 
 :satellite: A mini event manager.
@@ -10,9 +10,17 @@
 ## Get start
 
 ```bash
-git clone https://github.com/zenoslin/mini-event-manager.git
-cd mini-event-manager
-npm run build
+npm i -S mini-event-manager
+```
+
+Example:
+
+```javascript
+import miniEventManager from 'mini-event-manager';
+
+const manager = new miniEventManager();
+manager.on("add", val => console.log(val));
+manager.emit("add", 1);
 ```
 
 ## Method 
@@ -69,6 +77,14 @@ Check if the event has a listener
 ### destory()
 
 Destory event manager instantiation.
+
+## Build
+
+```bash
+git clone https://github.com/zenoslin/mini-event-manager.git
+cd mini-event-manager
+npm run build
+```
 
 ## LICENSE
 [MIT](LICENSE)
